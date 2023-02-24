@@ -16,14 +16,11 @@ $AzStorageAccount = New-AzStorageAccount -ResourceGroupName $resourceGroup `
                     -AccessTier Hot 
 
 $AzStorageAccount | Set-AzStorageAccount -AllowBlobPublicAccess $false
-
 $AzStorageContainer = $AzStorageAccount | New-AzStorageContainer -Name $storageContainer
-
 $AzStorageAccountKey = (Get-AzStorageAccountKey -ResourceGroupName $resourceGroup -Name $accountName ).Value[0]
-
 
 <#
 $AzStorageContainer | Remove-AzStorageContainer
-$AzStorageAccount | Remove-AzStorageAccount -Confirm:$false
-$AzResourceGroup | Remove-AzResourceGroup -Confirm:$false
+$AzStorageAccount | Remove-AzStorageAccount -Confirm:$false -Force
+$AzResourceGroup | Remove-AzResourceGroup -Confirm:$false -Force
 #>
